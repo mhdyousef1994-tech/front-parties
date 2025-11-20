@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner Test</title>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            direction: rtl;
+        }
+        #reader {
+            width: 500px;
+            height: 500px;
+            border: 2px dashed #ccc;
+            margin: 20px auto;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        .result {
+            margin: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>اختبار مسح QR</h1>
+    
+    <div class="controls">
+        <button onclick="startScanner()">بدء المسح</button>
+        <button onclick="stopScanner()">إيقاف المسح</button>
+    </div>
+    
+    <div id="reader"></div>
+    
+    <div id="result" class="result" style="display: none;">
+        <h3>النتيجة:</h3>
+        <p id="result-text"></p>
+    </div>
+    
+    <div id="error" class="result" style="display: none; background: #ffebee;">
+        <h3>خطأ:</h3>
+        <p id="error-text"></p>
+    </div>
+
+    <script>
+        let html5QrCode = null;
+        let isScanning = false;
+
+        function onScanSuccess(decodedText, decodedResult) {
+            console.log('Scan success:', decodedText);
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result-text').textContent = decodedText;
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function onScanFailure(error) {
+            // تجاهل أخطاء المسح العادية
+            console.log('Scan error:', error);
+        }
+
+        async function startScanner() {
+            if (isScanning) return;
+            
+            try {
+                document.getElementById('error').style.display = 'none';
+                
+                html5QrCode = new Html5Qrcode("reader");
+                
+                const config = { 
+                    fps: 10, 
+                    qrbox: { width: 250, height: 250 }
+                };
+
+                await html5QrCode.start(
+                    { facingMode: "environment" },
+                    config,
+                    onScanSuccess,
+                    onScanFailure
+                );
+                
+                isScanning = true;
+                console.log('Scanner started successfully');
+                
+            } catch (err) {
+                console.error('Error starting scanner:', err);
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error-text').textContent = err.message;
+                isScanning = false;
+            }
+        }
+
+        async function stopScanner() {
+            if (!isScanning || !html5QrCode) return;
+            
+            try {
+                await html5QrCode.stop();
+                html5QrCode.clear();
+                isScanning = false;
+                console.log('Scanner stopped successfully');
+            } catch (err) {
+                console.error('Error stopping scanner:', err);
+            }
+        }
+
+        // تنظيف عند إغلاق الصفحة
+        window.addEventListener('beforeunload', () => {
+            if (isScanning) {
+                stopScanner();
+            }
+        });
+    </script>
+</body>
+</html>

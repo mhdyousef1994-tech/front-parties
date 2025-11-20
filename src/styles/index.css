@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
+html { direction: rtl; }
+body { direction: rtl; @apply bg-white text-ink; font-family: 'Cairo', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+
+/* Tailwind v4 theme tokens */
+@theme {
+  /* Colors */
+  --color-ink: #1f2937;
+  --color-brown: #3b2f2f;
+  --color-gold: #c59d5f;
+  --color-gold-50: #fff7e6;
+  --color-gold-100: #c79a3a;
+
+  /* Font */
+  --font-cairo: "Cairo", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Shadow */
+  --shadow-elegant: 0 10px 30px rgba(197,157,95,0.15);
+
+  /* Animations */
+  --animate-fade-in: fade-in 800ms ease-out both;
+  --animate-fade-up: fade-up 900ms ease-out both;
+
+  @keyframes fade-in {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+  }
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(20px) }
+    100% { opacity: 1; transform: translateY(0) }
+  }
+}
+
+/* Wedding palette for client dashboard */
+.client-theme {
+  /* remap legacy client theme to gold-based palette */
+  --client-primary: #c59d5f; /* gold */
+  --client-primary-600: #a8834f;
+  --client-accent: #fff7e6;  /* gold-50 */
+  --client-accent-2: #ffefcc; /* gold-100 */
+  --client-gold: #c59d5f;
+  --client-ink: #1f2937;
+}
+
+.client-theme .topbar {
+  background: linear-gradient(90deg, #ffffff, var(--client-accent));
+  border-bottom: 2px solid var(--client-accent-2);
+}
+
+.client-theme .topbar .text-lg {
+  color: var(--client-primary);
+}
+
+.client-theme .topbar a {
+  color: var(--client-primary);
+}
+.client-theme .topbar a:hover {
+  color: var(--client-primary-600);
+}
+
+.client-theme aside {
+  background-color: #ffffff;
+  border-right: 2px solid var(--client-accent-2);
+}
+.client-theme aside a {
+  color: var(--client-ink);
+}
+.client-theme aside a:hover {
+  background-color: var(--client-accent);
+}
+
+/* Active link in client sidebar */
+.client-theme aside a.active {
+  background-color: var(--client-accent);
+  color: var(--client-primary);
+  border-right-color: var(--client-primary);
+}
+
+.client-theme .btn-primary { /* utility for primary buttons if used */
+  background-color: var(--client-primary);
+  color: #fff;
+}
+.client-theme .btn-primary:hover {
+  background-color: var(--client-primary-600);
+}
+
+.client-theme .card {
+  background: #fff;
+  border: 1px solid var(--client-accent);
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 20px rgba(214,51,132,0.06);
+}
+
+.client-theme .heading-gold {
+  color: var(--client-gold);
+}
+
+.client-theme .badge-gold {
+  background-color: #fff7e6;
+  color: var(--client-gold);
+  border: 1px solid #ffe8b3;
+}
+
+/* Themed spinner inside client dashboard */
+.client-theme .spinner {
+  border-color: var(--client-primary);
+  border-right-color: transparent;
+}
+
+/* Icon circle with blush background and rose icon color */
+.client-theme .icon-circle-rose {
+  background-color: var(--client-accent);
+  color: var(--client-primary);
+}
+
+/* Button color normalization (avoid blue/red in design) */
+button[class*="bg-blue-"],
+a[class*="bg-blue-"] {
+  background-color: var(--color-gold) !important;
+  color: #fff !important;
+}
+button[class*="text-blue-"],
+a[class*="text-blue-"] {
+  color: var(--color-gold) !important;
+}
+button[class*="border-blue-"],
+a[class*="border-blue-"] {
+  border-color: var(--color-gold) !important;
+}
+
+button[class*="bg-red-"],
+a[class*="bg-red-"] {
+  background-color: var(--color-brown) !important;
+  color: #fff !important;
+}
+button[class*="text-red-"],
+a[class*="text-red-"] {
+  color: var(--color-brown) !important;
+}
+button[class*="border-red-"],
+a[class*="border-red-"] {
+  border-color: var(--color-brown) !important;
+}
+
+/* Tables: clearer headers with gold and slightly larger font */
+table thead th {
+  background-color: var(--color-gold-50);
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: 1rem; /* ~text-base */
+}
+table thead tr {
+  border-bottom: 1px solid var(--color-gold-100);
+}
+
+/* Elegant helpers using the palette */
+.gold-text { color: var(--wedding-gold); }
+.gold-border { border-color: var(--wedding-gold); }
+.btn-gold {
+  background-color: var(--wedding-gold);
+  color: #ffffff;
+}
+.btn-gold:hover { filter: brightness(0.95); }
+.card-elegant { background: #fff; border: 1px solid #f3e8d2; box-shadow: 0 10px 30px rgba(197,157,95,0.08); border-radius: 0.75rem; }
+
+/* Parallax backgrounds for hero sections */
+.hero-parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Animation helpers mapped to Tailwind-defined keyframes */
+.fade-in { animation: fade-in 800ms ease-out both; }
+.fade-up { animation: fade-up 900ms ease-out both; }
