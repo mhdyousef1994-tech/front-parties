@@ -76,7 +76,7 @@ export default function TopBar({ onToggleSidebar }){
       <div className='flex items-center gap-3'>
         {/* <div className='text-sm'>{derived || tokenName || 'المستخدم'}</div> */}
         {/* <Link to={profileHref} className='text-sm text-blue-600 hover:underline'>الملف الشخصي</Link> */}
-        <button onClick={()=>{ logout(); nav('/login') }} className='px-3 py-1 border border-gold text-ink rounded hover:bg-gold-50'>تسجيل الخروج</button>
+        <button onClick={()=>{ logout(); nav('/login') }} className='btn-secondary px-3 py-1 rounded'>تسجيل الخروج</button>
       </div>
     </div>
   )

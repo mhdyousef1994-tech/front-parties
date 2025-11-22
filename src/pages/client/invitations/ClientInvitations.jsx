@@ -63,9 +63,8 @@ export default function ClientInvitations(){
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="heading-gold text-2xl font-bold">قائمة الدعوات</h2>
-        <a href="/client/invitations/add" className="btn-primary px-4 py-2 rounded">إضافة دعوة</a>
+        <a href="/client/invitations/add" className="btn px-4 py-2 rounded">إضافة دعوة</a>
       </div>
-
 
       {/* Invitations List */}
       <div className="card">
@@ -80,12 +79,12 @@ export default function ClientInvitations(){
               placeholder="ابحث بالاسم أو الملاحظات..."
               value={query}
               onChange={e=>setQuery(e.target.value)}
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="input"
             />
             <select
               value={status}
               onChange={e=>setStatus(e.target.value)}
-              className="w-full border border-gray-300 rounded px-3 py-2 bg-white"
+              className="select"
             >
               <option value="all">كل الحالات</option>
               <option value="available">متاح</option>
@@ -96,7 +95,7 @@ export default function ClientInvitations(){
               <select
                 value={pageSize}
                 onChange={e=>setPageSize(Number(e.target.value))}
-                className="border border-gray-300 rounded px-2 py-2 bg-white"
+                className="select px-2 py-2"
               >
                 <option value={5}>5</option>
                 <option value={10}>10</option>
@@ -106,7 +105,7 @@ export default function ClientInvitations(){
             </div>
           </div>
         </div>
-        
+
         {loading ? (
           <div className="p-6 text-center">
             <div className="spinner animate-spin rounded-full h-8 w-8 border-2 mx-auto"></div>
@@ -121,7 +120,7 @@ export default function ClientInvitations(){
           ) : (
           <div>
            <div className="overflow-x-auto hidden md:block">
-            <table className="min-w-full divide-y divide-gray-100">
+            <table className="table">
               <thead className="bg-gray-50/60">
                 <tr>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -138,24 +137,23 @@ export default function ClientInvitations(){
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-100">
+              <tbody>
                 {paged.map(invitation => (
                   <tr key={invitation._id || invitation.id} className="hover:bg-gray-50/60">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{invitation.guestName}</div>
+
                         <div className="text-sm text-gray-500">
                           {invitation.notes && invitation.notes.length > 0 ? invitation.notes : 'لا توجد ملاحظات'}
                         </div>
                       </div>
                     </td>
-                    
+
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {invitation.numOfPeople ?? invitation.guests} ضيف
                     </td>
-                    
-                    
-                    
+
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                         (invitation.used ?? invitation.isUsed) ? 'bg-red-100 text-red-800' : 'badge-gold'
@@ -163,20 +161,20 @@ export default function ClientInvitations(){
                         {(invitation.used ?? invitation.isUsed) ? 'مستخدم' : 'متاح'}
                       </span>
                     </td>
-                    
+
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex gap-2">
                         {/* زر التعديل والطباعة */}
                         <a
                           href={`/client/invitations/edit/${invitation._id || invitation.id}`}
-                          className="text-orange-600 hover:text-orange-800 mr-2"
+                          className="btn-secondary px-2 py-1 rounded mr-2"
                           title="تعديل الدعوة"
                         >
                           تعديل
                         </a>
                         <a
                           href={`/client/invitations/${invitation._id || invitation.id}`}
-                          className="text-blue-600 hover:text-blue-800 mr-2"
+                          className="btn-secondary px-2 py-1 rounded mr-2"
                           title="طباعة الدعوة"
                           target="_blank"
                         >
@@ -184,7 +182,7 @@ export default function ClientInvitations(){
                         </a>
                         <button
                           onClick={() => remove(invitation._id || invitation.id)}
-                          className="text-red-600 hover:text-red-800"
+                          className="btn-secondary px-2 py-1 rounded"
                           title="حذف الدعوة"
                         >
                           حذف
@@ -202,13 +200,13 @@ export default function ClientInvitations(){
               </div>
               <div className="flex items-center gap-2">
                 <button
-                  className="px-3 py-1 border rounded disabled:opacity-50"
+                  className="btn-secondary px-3 py-1 rounded disabled:opacity-50"
                   disabled={currentPage <= 1}
                   onClick={()=>setPage(p=>Math.max(1, p-1))}
                 >السابق</button>
                 <span className="text-sm">{currentPage} / {totalPages}</span>
                 <button
-                  className="px-3 py-1 border rounded disabled:opacity-50"
+                  className="btn-secondary px-3 py-1 rounded disabled:opacity-50"
                   disabled={currentPage >= totalPages}
                   onClick={()=>setPage(p=>Math.min(totalPages, p+1))}
                 >التالي</button>
@@ -238,14 +236,14 @@ export default function ClientInvitations(){
                   <div className="mt-3 flex items-center gap-3 text-sm">
                     <a
                       href={`/client/invitations/edit/${invitation._id || invitation.id}`}
-                      className="text-orange-600 hover:text-orange-800"
+                      className="btn-secondary px-2 py-1 rounded"
                       title="تعديل الدعوة"
                     >
                       تعديل
                     </a>
                     <a
                       href={`/client/invitations/${invitation._id || invitation.id}`}
-                      className="text-blue-600 hover:text-blue-800"
+                      className="btn-secondary px-2 py-1 rounded"
                       title="طباعة الدعوة"
                       target="_blank"
                     >
@@ -253,7 +251,7 @@ export default function ClientInvitations(){
                     </a>
                     <button
                       onClick={() => remove(invitation._id || invitation.id)}
-                      className="text-red-600 hover:text-red-800"
+                      className="btn-secondary px-2 py-1 rounded"
                       title="حذف الدعوة"
                     >
                       حذف
@@ -269,13 +267,13 @@ export default function ClientInvitations(){
               </div>
               <div className="flex items-center gap-2">
                 <button
-                  className="px-3 py-1 border rounded disabled:opacity-50"
+                  className="btn-secondary px-3 py-1 rounded disabled:opacity-50"
                   disabled={currentPage <= 1}
                   onClick={()=>setPage(p=>Math.max(1, p-1))}
                 >السابق</button>
                 <span className="text-sm">{currentPage} / {totalPages}</span>
                 <button
-                  className="px-3 py-1 border rounded disabled:opacity-50"
+                  className="btn-secondary px-3 py-1 rounded disabled:opacity-50"
                   disabled={currentPage >= totalPages}
                   onClick={()=>setPage(p=>Math.min(totalPages, p+1))}
                 >التالي</button>

@@ -31,7 +31,7 @@ export default function ResetPassword(){
       style={{ backgroundImage: "url('/hero.jpg')" }}
     >
       <div className='w-full max-w-md px-4'>
-        <div className='card-elegant p-8 animate-fade-up'>
+        <div className='card p-8 animate-fade-up'>
           <div className='text-center mb-8 font-cairo'>
             <h1 className='text-2xl font-bold text-ink mb-2'>إعادة تعيين كلمة المرور</h1>
             <p className='text-brown'>أدخل رقم الجوال وكلمة المرور الجديدة</p>
@@ -43,17 +43,17 @@ export default function ResetPassword(){
           <form onSubmit={submit} className='space-y-6'>
             <div>
               <label className='block text-sm font-medium text-ink mb-2 font-cairo'>رقم الجوال</label>
-              <input type='tel' inputMode='numeric' value={phone} onChange={e=>setPhone(e.target.value)} className='w-full px-3 py-2 border border-gold-100 rounded-md focus:outline-none focus:ring-2 focus:ring-gold' placeholder='مثال: 0912345678' required />
+              <input type='tel' inputMode='numeric' value={phone} onChange={e=>setPhone(e.target.value)} className='input' placeholder='مثال: 0912345678' required />
             </div>
             <div>
               <label className='block text-sm font-medium text-ink mb-2 font-cairo'>كلمة المرور الجديدة</label>
-              <input type='password' value={password} onChange={e=>setPwd(e.target.value)} className='w-full px-3 py-2 border border-gold-100 rounded-md focus:outline-none focus:ring-2 focus:ring-gold' required />
+              <input type='password' value={password} onChange={e=>setPwd(e.target.value)} className='input' required />
             </div>
             <div>
               <label className='block text-sm font-medium text-ink mb-2 font-cairo'>تأكيد كلمة المرور</label>
-              <input type='password' value={confirm} onChange={e=>setConfirm(e.target.value)} className='w-full px-3 py-2 border border-gold-100 rounded-md focus:outline-none focus:ring-2 focus:ring-gold' required />
+              <input type='password' value={confirm} onChange={e=>setConfirm(e.target.value)} className='input' required />
             </div>
-            <button type='submit' disabled={loading} className='w-full py-3 px-4 btn-gold disabled:brightness-95 text-white font-medium rounded-md transition'>
+            <button type='submit' disabled={loading} className='btn w-full'>
               {loading ? 'جاري الحفظ...' : 'حفظ'}
             </button>
           </form>

@@ -20,13 +20,13 @@ export default function Pagination({ currentPage, totalPages, onPageChange }){
 
   return (
     <div className="flex items-center justify-center gap-2">
-      <button onClick={() => goTo(1)} className="px-2 py-1 text-sm rounded border border-gray-200 hover:bg-gray-50" disabled={currentPage === 1}>الأولى</button>
-      <button onClick={() => goTo(currentPage - 1)} className="px-2 py-1 text-sm rounded border border-gray-200 hover:bg-gray-50" disabled={currentPage === 1}>السابق</button>
+      <button onClick={() => goTo(1)} className="btn-secondary px-2 py-1 text-sm rounded" disabled={currentPage === 1}>الأولى</button>
+      <button onClick={() => goTo(currentPage - 1)} className="btn-secondary px-2 py-1 text-sm rounded" disabled={currentPage === 1}>السابق</button>
       {pages.map(p => (
-        <button key={p} onClick={() => goTo(p)} className={`px-3 py-1 text-sm rounded border ${p === currentPage ? 'bg-rose-600 text-white border-rose-600' : 'border-gray-200 hover:bg-gray-50'}`}>{p}</button>
+        <button key={p} onClick={() => goTo(p)} className={`${p === currentPage ? 'btn' : 'btn-secondary'} px-3 py-1 text-sm rounded`}>{p}</button>
       ))}
-      <button onClick={() => goTo(currentPage + 1)} className="px-2 py-1 text-sm rounded border border-gray-200 hover:bg-gray-50" disabled={currentPage === totalPages}>التالي</button>
-      <button onClick={() => goTo(totalPages)} className="px-2 py-1 text-sm rounded border border-gray-200 hover:bg-gray-50" disabled={currentPage === totalPages}>الأخيرة</button>
+      <button onClick={() => goTo(currentPage + 1)} className="btn-secondary px-2 py-1 text-sm rounded" disabled={currentPage === totalPages}>التالي</button>
+      <button onClick={() => goTo(totalPages)} className="btn-secondary px-2 py-1 text-sm rounded" disabled={currentPage === totalPages}>الأخيرة</button>
     </div>
   )
 }

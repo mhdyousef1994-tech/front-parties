@@ -29,7 +29,7 @@ export default function Register(){
       style={{ backgroundImage: "url('/hero.jpg')" }}
     >
       <div className='w-full max-w-md px-4'>
-        <div className='card-elegant p-8 animate-fade-up'>
+        <div className='card p-8 animate-fade-up'>
           <div className='text-center mb-8 font-cairo'>
             <h1 className='text-3xl font-bold text-ink mb-2'>إنشاء حساب</h1>
             <p className='text-brown'>سجّل كعميل جديد</p>
@@ -39,21 +39,21 @@ export default function Register(){
           <form onSubmit={submit} className='space-y-6'>
             <div>
               <label className='block text-sm font-medium text-ink mb-2 font-cairo'>الاسم *</label>
-              <input type='text' value={form.name} onChange={e=> setForm({...form, name: e.target.value})} className='w-full px-3 py-2 border border-gold-100 rounded-md focus:outline-none focus:ring-2 focus:ring-gold' required />
+              <input type='text' value={form.name} onChange={e=> setForm({...form, name: e.target.value})} className='input' required />
             </div>
             <div>
               <label className='block text-sm font-medium text-ink mb-2 font-cairo'>رقم الجوال *</label>
-              <input type='tel' inputMode='numeric' value={form.phone} onChange={e=> setForm({...form, phone: e.target.value})} className='w-full px-3 py-2 border border-gold-100 rounded-md focus:outline-none focus:ring-2 focus:ring-gold' required />
+              <input type='tel' inputMode='numeric' value={form.phone} onChange={e=> setForm({...form, phone: e.target.value})} className='input' required />
             </div>
             <div>
               <label className='block text-sm font-medium text-ink mb-2 font-cairo'>كلمة المرور *</label>
-              <input type='password' value={form.password} onChange={e=> setForm({...form, password: e.target.value})} className='w-full px-3 py-2 border border-gold-100 rounded-md focus:outline-none focus:ring-2 focus:ring-gold' required />
+              <input type='password' value={form.password} onChange={e=> setForm({...form, password: e.target.value})} className='input' required />
             </div>
             <div className='flex gap-3 pt-2'>
-              <button type='submit' disabled={loading} className='px-6 py-2 btn-gold rounded-lg disabled:brightness-95 transition-colors'>
+              <button type='submit' disabled={loading} className='btn px-6 py-2 rounded-lg disabled:brightness-95 transition-colors'>
                 {loading ? 'جاري التسجيل...' : 'تسجيل'}
               </button>
-              <Link to='/login' className='px-6 py-2 border border-gold-100 text-ink rounded-lg hover:bg-gold-50 transition-colors'>لديك حساب؟ تسجيل دخول</Link>
+              <Link to='/login' className='btn-secondary px-6 py-2 rounded-lg transition-colors'>لديك حساب؟ تسجيل دخول</Link>
             </div>
           </form>
         </div>

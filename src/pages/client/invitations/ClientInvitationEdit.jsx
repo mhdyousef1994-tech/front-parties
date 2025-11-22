@@ -122,7 +122,7 @@ export default function ClientInvitationEdit() {
             value={form.guestName}
             onChange={handleChange}
             required
-            className="w-full border rounded px-3 py-2"
+            className="input"
           />
           {fieldErrors.guestName && <div className="text-red-600 text-sm mt-1">{fieldErrors.guestName}</div>}
         </div>
@@ -135,7 +135,7 @@ export default function ClientInvitationEdit() {
             onChange={handleChange}
             min="1"
             required
-            className="w-full border rounded px-3 py-2"
+            className="input"
           />
           {fieldErrors.numOfPeople && <div className="text-red-600 text-sm mt-1">{fieldErrors.numOfPeople}</div>}
         </div>
@@ -143,7 +143,7 @@ export default function ClientInvitationEdit() {
         {success && <div className="text-green-600">{success}</div>}
         <button
           type="submit"
-          className="btn-primary px-4 py-2 rounded"
+          className="btn"
           disabled={loading || (capacity != null && Math.max(0, capacity - usedGuests) <= 0)}
         >
           {loading ? 'يتم التعديل...' : 'تعديل الدعوة'}

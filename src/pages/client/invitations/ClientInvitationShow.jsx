@@ -178,11 +178,11 @@ export default function ClientInvitationShow() {
       })()}
 
       <div className="flex gap-2 mt-4">
-        <button className="btn-primary px-4 py-2 rounded" onClick={downloadPng}>
+        <button className="btn px-4 py-2 rounded" onClick={downloadPng}>
           تنزيل PNG
         </button>
-        <Link to={`/client/invitations/edit/${invitation._id || id}`} className="px-4 py-2 rounded border text-gray-700 hover:bg-gray-50">تعديل</Link>
-        <Link to="/client/invitations" className="px-4 py-2 rounded border text-gray-700 hover:bg-gray-50">العودة للقائمة</Link>
+        <Link to={`/client/invitations/edit/${invitation._id || id}`} className="btn-secondary px-4 py-2 rounded">تعديل</Link>
+        <Link to="/client/invitations" className="btn-secondary px-4 py-2 rounded">العودة للقائمة</Link>
       </div>
     </div>
   );
